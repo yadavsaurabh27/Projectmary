@@ -4,6 +4,7 @@ Live Demo
 https://yadavsaurabh27.github.io/Projectmary/
 
 Description
+
 This is a simple and responsive calculator web application built using HTML, CSS, and JavaScript. It performs basic arithmetic operations with a clean and modern user interface.
 
 Features
