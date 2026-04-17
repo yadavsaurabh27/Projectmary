@@ -1,25 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <style>
-        body {
-            background-color: #FAF8E3;
-            padding: 20px;
-        }
-        .calculator {
-            border: 10px solid black;
-            background-color: black;
-            padding: 20px;
-            border-radius: 15px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Calculator</title>
+
+<style>
+    body {
+        margin: 0;
+        background: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: -apple-system, sans-serif;
+    }
+
+    .calculator {
+        width: 300px;
+    }
+
+    .display {
+        color: white;
+        font-size: 60px;
+        text-align: right;
+        margin-bottom: 20px;
+        padding-right: 10px;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+
+    button {
+        height: 65px;
+        border-radius: 50%;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    .gray { background: #a5a5a5; color: black; }
+    .dark { background: #333; color: white; }
+    .orange { background: #ff9500; color: white; }
+
+    .zero {
+        grid-column: span 2;
+        border-radius: 40px;
+        text-align: left;
+        padding-left: 25px;
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+</style>
 </head>
+
 <body>
-    <div class="calculator">
-        <!-- Calculator contents go here -->
+
+<div class="calculator">
+    <div id="display" class="display">0</div>
+
+    <div class="buttons">
+        <button class="gray" onclick="clearDisplay()">AC</button>
+        <button class="gray" onclick="percent()">%</button>
+        <button class="gray" onclick="toggleSign()">±</button>
+        <button class="orange" onclick="press('/')">÷</button>
+
+        <button class="dark" onclick="press('7')">7</button>
+        <button class="dark" onclick="press('8')">8</button>
+        <button class="dark" onclick="press('9')">9</button>
+        <button class="orange" onclick="press('*')">×</button>
+
+        <button class="dark" onclick="press('4')">4</button>
+        <button class="dark" onclick="press('5')">5</button>
+        <button class="dark" onclick="press('6')">6</button>
+        <button class="orange" onclick="press('-')">−</button>
+
+        <button class="dark" onclick="press('1')">1</button>
+        <button class="dark" onclick="press('2')">2</button>
+        <button class="dark" onclick="press('3')">3</button>
+        <button class="orange" onclick="press('+')">+</button>
+
+        <button class="dark zero" onclick="press('0')">0</button>
+        <button class="dark" onclick="press('.')">.</button>
+        <button class="orange" onclick="calculate()">=</button>
     </div>
+</div>
+
+<script>
+let display = document.getElementById("display");
+
+function press(val) {
+    if (display.innerText === "0") {
+        display.innerText = val;
+    } else {
+        display.innerText += val;
+    }
+}
+
+function clearDisplay() {
+    display.innerText = "0";
+}
+
+function toggleSign() {
+    let value = parseFloat(display.innerText);
+    display.innerText = value * -1;
+}
+
+function percent() {
+    let value = parseFloat(display.innerText);
+    display.innerText = value / 100;
+}
+
+function calculate() {
+    try {
+        let expression = display.innerText;
+        let result = eval(expression);
+        display.innerText = result;
+    } catch {
+        display.innerText = "Error";
+    }
+}
+</script>
+
 </body>
 </html>
