@@ -1,7 +1,7 @@
 Calculator Web App
 
 Live Demo
-https://yadavsaurabh27.github.io/Projectmary/
+ https://yadavsaurabh27.github.io/visual_struck/
 
 Description
 
